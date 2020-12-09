@@ -1,4 +1,4 @@
-# Welcome to the Front-End Web Development Boot Camp
+# Welcome to React with JavaScript class!
 
 ![DevelopIntelligence Logo](images/developintelligence-logo.jpg "DevelopIntelligence Logo")
 
