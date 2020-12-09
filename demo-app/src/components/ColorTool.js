@@ -1,25 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export function ColorTool() {
-
-  const colors = [
-    { id: 1, name: 'red', hexcode: 'ff0000' },
-    { id: 2, name: 'green', hexcode: '00ff00' },
-    { id: 3, name: 'blue', hexcode: '0000ff' },
-  ];
-
-  const colorListItems = colors.map(color =>
-    <li key={color.id}>{color.name}</li>)
+export function ColorTool(props) {
 
   return (
     <>
       <header>
-        <h1>Color Tool</h1>
+        <h1>{props.headerText}</h1>
       </header>
       <ul>
-        {colorListItems}
+        {props.colors.map(color =>
+          <li key={color.id}>{color.name}</li>)}
       </ul>
     </>
   )
-
 }
+
+ColorTool.defaultProps = {
+  colors: [],
+};
+
+ColorTool.propTypes = {
+  headerText: PropTypes.string.isRequired,
+  colors: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    hexcode: PropTypes.string,
+  })).isRequired,
+};
