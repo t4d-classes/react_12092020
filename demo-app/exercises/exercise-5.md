@@ -6,4 +6,6 @@
 
 3. Create a new component named Car View Row. The Car View Row component should display one row of car data. Utilize the Car View Row component in Car Table component.
 
-4. Ensure everything works!
+4. Ensure you have configured reasonable prop types and default props for all components.
+
+5. Ensure everything works!
