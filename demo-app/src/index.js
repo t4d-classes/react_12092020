@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { HelloWorld } from './components/HelloWorld';
+import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 
 ReactDOM.render(
   // React.createElement(React.Fragment, null,
-  //   React.createElement(HelloWorld),
+  //   React.createElement(ColorTool),
   //   React.createElement(CarTool));
   <>
-    <HelloWorld />
+    <ColorTool />
     <CarTool />
   </>,
   document.querySelector('#root'),
