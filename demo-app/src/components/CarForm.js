@@ -14,12 +14,13 @@ export function CarForm() {
     setCarForm({
       ...carForm,
       [e.target.name]: e.target.type === 'number'
-        ? parseInt(e.target.value) : e.target.value,
+        ? parseFloat(e.target.value) : e.target.value,
     });
 
   };
 
   console.log(carForm);
+ 
 
   return (
     <form>

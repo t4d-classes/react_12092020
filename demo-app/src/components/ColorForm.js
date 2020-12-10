@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export function ColorForm() {
+export function ColorForm(props) {
 
   // array destructuring
   const [
@@ -17,19 +17,33 @@ export function ColorForm() {
 
   };
 
-  console.log(colorForm);
+  const submitColor = () => {
+    props.onSubmitColor(colorForm);
+
+    setColorForm({
+      name: '', hexcode: '',
+    });
+  };
 
   return (
     <form>
       <div>
         <label htmlFor="color-name-input">Color Name</label>
-        <input type="text" id="color-name-input" name="name" value={colorForm.name} onChange={change} />
+        <input type="text" id="color-name-input" name="name"
+          value={colorForm.name} onChange={change} />
       </div>
       <div>
-        <label htmlFor="color-name-input">Color Hexcode</label>
-        <input type="text" id="color-name-input" name="hexcode" value={colorForm.hexcode} onChange={change} />
+        <label htmlFor="color-hexcode-input">Color Hexcode</label>
+        <input type="text" id="color-hexcode-input" name="hexcode" value={colorForm.hexcode} onChange={change} />
+      </div>
+      <div>
+        <button type="button" onClick={submitColor}>{props.buttonText}</button>
       </div>
     </form>
   );
 
 }
+
+ColorForm.defaultProps = {
+  buttonText: 'Submit Color',
+};
