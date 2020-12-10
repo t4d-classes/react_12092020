@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const nanToValue = (num) => isNaN(num) ? '' : num;
 
-export function CarForm() {
+export function CarForm(props) {
 
   const [
     carForm,
@@ -19,8 +19,12 @@ export function CarForm() {
 
   };
 
-  console.log(carForm);
- 
+  const submitCar = () => {
+    props.onSubmitCar(carForm);
+
+    setCarForm({ make: '', model: '', year: NaN, color: '', price: NaN });
+  };
+
 
   return (
     <form>
@@ -49,8 +53,14 @@ export function CarForm() {
         <input type="number" id="price-input" name="price"
           value={nanToValue(carForm.price)} onChange={change} />
       </div>
+      <div>
+        <button type="button" onClick={submitCar}>{props.buttonText}</button>
+      </div>
     </form>
   );
 
-
 }
+
+CarForm.defaultProps = {
+  buttonText: 'Submit Car',
+};
