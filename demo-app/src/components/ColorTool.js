@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ToolHeader } from './ToolHeader';
+import { ColorList } from './ColorList';
+import { ColorForm } from './ColorForm';
+
+
 export function ColorTool(props) {
 
   return (
     <>
-      <header>
-        <h1>{props.headerText}</h1>
-      </header>
-      <ul>
-        {props.colors.map(color =>
-          <li key={color.id}>{color.name}</li>)}
-      </ul>
+      <ToolHeader headerText={props.headerText} />
+      <ColorList colors={props.colors} />
+      <ColorForm />
     </>
   )
 }
