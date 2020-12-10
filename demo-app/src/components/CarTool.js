@@ -8,6 +8,7 @@ import { CarForm } from './CarForm';
 export function CarTool(props) {
 
   const [cars, setCars] = useState([...props.cars]);
+  const [editCarId, setEditCarId] = useState(-1);
 
   const addCar = (newCar) => {
     setCars([
@@ -26,7 +27,8 @@ export function CarTool(props) {
   return (
     <>
       <ToolHeader headerText="Car Tool" />
-      <CarTable cars={cars} onDeleteCar={deleteCar} />
+      <CarTable cars={cars} editCarId={editCarId}
+        onEditCar={setEditCarId} onDeleteCar={deleteCar} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </>
   );

@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 
 export function CarViewRow(props) {
 
+  const editCar = () => {
+    props.onEditCar(props.car.id);
+  };
+
   const deleteCar = () => {
     props.onDeleteCar(props.car.id);
-  }
+  };
 
   return (
     <tr>
@@ -16,6 +20,7 @@ export function CarViewRow(props) {
       <td>{props.car.color}</td>
       <td>{props.car.price}</td>
       <td>
+        <button type="button" onClick={editCar}>Edit</button>
         <button type="button" onClick={deleteCar}>Delete</button>
       </td>
     </tr>
@@ -31,5 +36,7 @@ CarViewRow.propTypes = {
     year: PropTypes.number,
     color: PropTypes.string,
     price: PropTypes.number,
-  })
+  }),
+  onEditCar: PropTypes.func.isRequired,
+  onDeleteCar: PropTypes.func.isRequired,
 };

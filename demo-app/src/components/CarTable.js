@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { CarEditRow } from './CarEditRow';
 import { CarViewRow } from './CarViewRow';
 
 export function CarTable(props) {
@@ -19,7 +20,9 @@ export function CarTable(props) {
         </tr>
       </thead>
       <tbody>
-        {props.cars.map(car => <CarViewRow key={car.id} car={car} onDeleteCar={props.onDeleteCar} />)}
+        {props.cars.map(car => car.id === props.editCarId
+          ? <CarEditRow key={car.id} car={car} />
+          : <CarViewRow key={car.id} car={car} onEditCar={props.onEditCar} onDeleteCar={props.onDeleteCar} />)}
       </tbody>
     </table>
   );
@@ -29,6 +32,7 @@ export function CarTable(props) {
 
 CarTable.defaultProps = {
   cars: [],
+  editCarId: -1,
 };
 
 CarTable.propTypes = {
@@ -40,4 +44,7 @@ CarTable.propTypes = {
     color: PropTypes.string,
     price: PropTypes.number,
   })).isRequired,
+  editCarId: PropTypes.number.isRequired,
+  onEditCar: PropTypes.func.isRequired,
+  onDeleteCar: PropTypes.func.isRequired,
 };
