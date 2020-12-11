@@ -5,29 +5,18 @@ import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
 
+import { useList } from '../hooks/useList';
+
 
 export function ColorTool(props) {
 
-  const [ colors, setColors ] = useState([ ...props.colors ]);
-
-  const addColor = (newColor) => {
-
-    setColors([
-      ...colors,
-      {
-        ...newColor,
-        id: Math.max(...colors.map(c => c.id), 0) + 1,
-      },
-    ]);
-
-
-  }
+  const [colors, appendColor, , removeColor] = useList([...props.colors]);
 
   return (
     <>
       <ToolHeader headerText={props.headerText} />
-      <ColorList colors={colors} />
-      <ColorForm buttonText="Add" onSubmitColor={addColor} />
+      <ColorList colors={colors} onDeleteColor={removeColor} />
+      <ColorForm buttonText="Add" onSubmitColor={appendColor} />
     </>
   )
 }

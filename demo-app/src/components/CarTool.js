@@ -5,13 +5,13 @@ import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
-import { useCarList } from '../hooks/useCarList';
+import { useList } from '../hooks/useList';
 
 export function CarTool(props) {
 
-  const {
+  const [
     cars, appendCar, replaceCar, removeCar
-  } = useCarList([...props.cars]);
+  ] = useList([...props.cars]);
 
   const [editCarId, setEditCarId] = useState(-1);
 
