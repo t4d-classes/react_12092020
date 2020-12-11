@@ -5,32 +5,28 @@ import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
+import { useCarList } from '../hooks/useCarList';
+
 export function CarTool(props) {
 
-  const [cars, setCars] = useState([...props.cars]);
+  const {
+    cars, appendCar, replaceCar, removeCar
+  } = useCarList([...props.cars]);
+
   const [editCarId, setEditCarId] = useState(-1);
 
   const addCar = (newCar) => {
-    setCars([
-      ...cars,
-      {
-        ...newCar,
-        id: Math.max(...cars.map(c => c.id), 0) + 1,
-      },
-    ]);
+    appendCar(newCar);
     setEditCarId(-1);
   };
 
   const saveCar = (car) => {
-    const carIndex = cars.findIndex(c => c.id === car.id);
-    const newCars = [...cars];
-    newCars[carIndex] = car;
-    setCars(newCars);
+    replaceCar(car);
     setEditCarId(-1);
   }
 
   const deleteCar = (carId) => {
-    setCars(cars.filter(c => c.id !== carId));
+    removeCar(carId);
     setEditCarId(-1);
   }
 
