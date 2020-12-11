@@ -24,6 +24,29 @@ export function CarEditRow(props) {
         ? parseFloat(e.target.value) : e.target.value,
     });
 
+    // const fieldPropNameUpdate = e.target.name; // make
+
+    // const newCarForm = {
+    //   // ...carForm
+    //   make: carForm.make,
+    //   model: carForm.model,
+    //   year: carForm.year,
+    //   color: carForm.color,
+    //   price: carForm.price,
+    // };
+
+    // // newCarForm.make = e.target.value;
+    // newCarForm[fieldPropNameUpdate] = e.target.value;
+
+    // setCarForm(newCarForm);
+
+  };
+
+  const saveCar = () => {
+    props.onSaveCar({
+      ...carForm,
+      id: props.car.id,
+    });
   };
 
   return (
@@ -40,8 +63,8 @@ export function CarEditRow(props) {
       <td><input type="number" name="price"
         value={nanToValue(carForm.price)} onChange={change} /></td>
       <td>
-        <button type="button" onClick={() => null}>Save</button>
-        <button type="button" onClick={() => null}>Cancel</button>
+        <button type="button" onClick={saveCar}>Save</button>
+        <button type="button" onClick={props.onCancelCar}>Cancel</button>
       </td>
     </tr>
   );
@@ -56,5 +79,7 @@ CarEditRow.propTypes = {
     year: PropTypes.number,
     color: PropTypes.string,
     price: PropTypes.number,
-  })
+  }),
+  onSaveCar: PropTypes.func.isRequired,
+  onCancelCar: PropTypes.func.isRequired,
 };
