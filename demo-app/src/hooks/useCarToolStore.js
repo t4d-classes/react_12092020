@@ -30,5 +30,3 @@ export function useCarToolStore(initialCars) {
     cars, editCarId, addCar, saveCar, deleteCar, cancelCar, editCar: setEditCarId
   };
 }
-
-}
