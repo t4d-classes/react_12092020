@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
 
-import { useList } from '../hooks/useList';
+import { useColorToolStoreContext } from '../contexts/colorToolStoreContext';
 
 
 export function ColorTool(props) {
 
-  const [colors, appendColor, , removeColor] = useList([...props.colors]);
+  const { colors, appendColor, removeColor } = useColorToolStoreContext();
 
   return (
     <>
