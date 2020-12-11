@@ -5,13 +5,13 @@ import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
-import { useCarToolStore } from '../hooks/useCarToolStore';
+import { useCarToolStoreContext } from '../contexts/carToolStoreContext';
 
-export function CarTool(props) {
+export function CarTool() {
 
   const {
     cars, editCarId, addCar, saveCar, deleteCar, cancelCar, editCar,
-  } = useCarToolStore([...props.cars]);
+  } = useCarToolStoreContext();
 
   return (
     <>
