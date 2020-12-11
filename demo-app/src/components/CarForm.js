@@ -1,30 +1,21 @@
 import React, { useState } from 'react';
 
+import { useForm } from '../hooks/useForm';
+
 const nanToValue = (num) => isNaN(num) ? '' : num;
 
 export function CarForm(props) {
 
   const [
     carForm,
-    setCarForm,
-  ] = useState({ make: '', model: '', year: NaN, color: '', price: NaN });
-
-  const change = (e) => {
-
-    setCarForm({
-      ...carForm,
-      [e.target.name]: e.target.type === 'number'
-        ? parseFloat(e.target.value) : e.target.value,
-    });
-
-  };
+    change,
+    resetCarForm,
+  ] = useForm({ make: '', model: '', year: NaN, color: '', price: NaN });
 
   const submitCar = () => {
     props.onSubmitCar(carForm);
-
-    setCarForm({ make: '', model: '', year: NaN, color: '', price: NaN });
+    resetCarForm();
   };
-
 
   return (
     <form>
